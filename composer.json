@@ -2,5 +2,16 @@
     "require": {
         "slim/slim": "2.*",
         "twitter/bootstrap": "dev-master"
-    }
+    },
+    "autoload": {
+        "classmap": [
+            "src/view",
+            "src/controller",
+            "src/model",
+            "src/database/migration",
+            "src/database/seed",
+            "src/tests"
+        ]
+    },
+    "minimum-stability": "dev"
 }
