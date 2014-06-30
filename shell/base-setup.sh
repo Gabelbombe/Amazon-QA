@@ -51,7 +51,7 @@ done
 
 # Ignores
 [ ! -f '.composer' ] && {
-    echo -e "vendor\ncomposer.lock\n.idea" > .gitignore
+    echo -e "vendor\ncomposer.lock\n.idea\nshell/*.conf" > .gitignore
 }
 
 
