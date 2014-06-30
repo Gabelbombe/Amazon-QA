@@ -1,7 +1,28 @@
 {
+    "name" : "ehime/Amazon-QA",
+    "description": "Slim Framework skeleton using Twig & Sass for 5-Star (halving), Imageboard connector, other stuff...",
+    "keywords" : [
+        "slim",
+        "skeleton",
+        "sass",
+        "twig"
+    ],
+    "homepage" : "https://github.com/ehime/Amazon-QA",
+    "license" : "MIT",
+    "authors" :
+    [
+        {
+            "name" : "Jd Daniel :: Ehime-Ken",
+            "email" : "dodomeki@gmai.com",
+            "homepage": "http://ehime.deviantart.com"
+        }
+    ],
     "require": {
         "slim/slim": "2.*",
-        "twitter/bootstrap": "dev-master"
+        "slim/extras": "*",
+        "twitter/bootstrap": "dev-master",
+        "twig/twig" : "v1.15.1",
+        "slim/views" : "0.1.*"
     },
     "autoload": {
         "classmap": [

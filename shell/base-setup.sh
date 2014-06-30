@@ -42,7 +42,7 @@ read -p "Localhost installation? [Y/n]: " LOCAL
 
 
 # Make base directories
-for directory in 'public' 'src/controller' 'src/database/migration' 'src/database/seed' 'src/model' 'src/tests' 'src/view'; do
+for directory in 'public/js' 'public/css' 'public/img' 'src/controller' 'src/database/migration' 'src/database/seed' 'src/model' 'src/tests' 'src/view'; do
     [ ! -d "${directory}" ] && {
         mkdir -p "${directory}"
     }
