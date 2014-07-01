@@ -18,10 +18,10 @@ BASEINSTALL="$(echo $SCRIPTPATH |sed 's,/*[^/]\+/*$,,')/"
 # Make a conf file for Apache
 read -p "Localhost installation? [Y/n]: " LOCAL
 [ 'y' == "$(echo ${LOCAL} | awk '{print tolower($0)}')" ] || {
-    echo -e "<VirtualHost *:80>\n DocumentRoot   \"${BASEINSTALL}\"\n ServerName     amazon.io\n ServerAlias    www.amazon.io\n\n DirectoryIndex index.php index.html\n\n  <Directory \"${BASEINSTALL}/\">\n      Options Indexes MultiViews\n      AllowOverride All\n      Order allow,deny\n      Allow from all\n  </Directory>\n\n</VirtualHost>" \
+    echo -e "<VirtualHost *:80>\n DocumentRoot   \"${BASEINSTALL}/public\"\n ServerName     amazon.io\n ServerAlias    www.amazon.io\n\n DirectoryIndex index.php index.html\n\n  <Directory \"${BASEINSTALL}/public/\">\n      Options Indexes MultiViews\n      AllowOverride All\n      Order allow,deny\n      Allow from all\n  </Directory>\n\n</VirtualHost>" \
     > "${SCRIPTPATH}/amazon-local.conf"
 } && {
-    echo -e "<VirtualHost *:80>\n DocumentRoot   \"${BASEINSTALL}\"\n\n DirectoryIndex index.php index.html\n\n  <Directory \"${BASEINSTALL}/\">\n      Options Indexes MultiViews\n      AllowOverride All\n      Order allow,deny\n      Allow from all\n  </Directory>\n\n</VirtualHost>" \
+    echo -e "<VirtualHost *:80>\n DocumentRoot   \"${BASEINSTALL}/public\"\n\n DirectoryIndex index.php index.html\n\n  <Directory \"${BASEINSTALL}/public/\">\n      Options Indexes MultiViews\n      AllowOverride All\n      Order allow,deny\n      Allow from all\n  </Directory>\n\n</VirtualHost>" \
     > "${SCRIPTPATH}/amazon-live.conf"
 }
 
@@ -42,7 +42,7 @@ read -p "Localhost installation? [Y/n]: " LOCAL
 
 
 # Make base directories
-for directory in 'public/js' 'public/css' 'public/img' 'src/controller' 'src/database/migration' 'src/database/seed' 'src/model' 'src/tests' 'src/view'; do
+for directory in 'public/js' 'public/css' 'public/img' 'public/sass' 'src/tmp' 'src/controller' 'src/database/migration' 'src/database/seed' 'src/model' 'src/tests' 'src/view'; do
     [ ! -d "${directory}" ] && {
         mkdir -p "${directory}"
     }
