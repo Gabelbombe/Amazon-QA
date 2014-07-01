@@ -1,11 +1,20 @@
-<html>
-<head>
+{% extends "layout/layout.phtml" %}
 
-    <title>{{title}}</title>
+{# header #}
+{% block header %}
 
-</head>
-<body>
+{% endblock %}
 
+{# content #}
+{% block content %}
 
-</body>
-</html>
+<p>This is my Slim framework skeleton.</p>
+
+{% endblock %}
+
+{# footer #}
+{% block footer %}
+
+<p><a href="http://mit-license.org/">MIT License</a></p>
+
+{% endblock %}

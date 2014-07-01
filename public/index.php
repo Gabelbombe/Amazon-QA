@@ -40,6 +40,5 @@ $app->get('/', function () USE ($app)
     ]);
 });
 
-
 // Run it
 $app->run();
