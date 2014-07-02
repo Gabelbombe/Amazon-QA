@@ -16,20 +16,35 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script>window.html5 || document.write('<script src="/js/vendor/html5shiv.js"><\/script>')</script>
     <![endif]-->
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.rate.js"></script>
+
 </head>
 <body>
 <div id="wrapper">
     <header>
-        <a href="#">Slim Skeleton</a>
+
+        <div id="rate1" data-id="OID-1" class="rating">&nbsp;</div>
+
         {% block header %}{% endblock %}
     </header>
+
     <div id="main">
         {% block content %}{% endblock %}
     </div>
+
     <footer>
         {% block footer %}{% endblock %}
     </footer>
+
 </div>
 <script src="/js/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#rate1').rate('example.php',{max:5,inc:.5});
+    });
+</script>
+
 </body>
 </html>

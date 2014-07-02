@@ -5,43 +5,42 @@
  http://php.scripts.psu.edu/rja171/widgets/rating.js
  ************************************************/
 
-$.fn.rate = function (url, opts)
-{
+$.fn.rate = function(url, opts) {
+
     if(null === url) return;
 
-    var settings = 
+    var settings =
     {
-        url        : url,   // post changes to
-        inc        : 1,     // value to increment by
-        maxvalue   : 5,     // max number of stars
-        currently  : 0      // number of selected stars
+        url   : url,   // post changes to
+        inc   : 1,     // value to increment by
+        max   : 5,     // max number of stars
+        cur   : 0      // number of selected stars
     };
 
-    if(opts) 
+    if(opts)
     {
         $.extend(settings, opts);
     };
 
     $.extend(settings,
     {
-        cancel: (settings.maxvalue > 1) ? true : false
+        cancel: (settings.max > 1) ? true : false
     });
-
 
     var container = $(this);
 
-    $.extend(container, 
+    $.extend(container,
     {
-        averageRating: settings.currently,
+        avg: settings.cur,
         url: settings.url
     });
 
     settings.inc = (settings.inc < .75) ? .5 : 1;
 
     var s = 0;
-    for (var i = 0; i <= settings.maxvalue ; i++)
+    for(var i= 0; i <= settings.max ; i++)
     {
-        if (i == 0)
+        if (0 === i)
         {
             if(true === settings.cancel)
             {
@@ -49,13 +48,14 @@ $.fn.rate = function (url, opts)
                 container.empty().append(div);
             }
         } else {
+
             var $div = $('<div class="star"></div>')
-                .append('<a href="#'+i+'" title="Give it '+i+'/'+settings.maxvalue+'">'+i+'</a>')
+                .append('<a href="#'+i+'" title="Give it '+i+'/'+settings.max+'">'+i+'</a>')
                 .appendTo(container);
 
-            if (settings.inc == .5)
+            if (.5 === settings.inc)
             {
-                $div.addClass((s % 2 ) ? 'star-left' : 'star-right');
+                $div.addClass((s % 2) ? 'star-left' : 'star-right');
             }
         }
         i = (i - 1 + settings.inc);
@@ -91,26 +91,29 @@ $.fn.rate = function (url, opts)
     {
         if (true === settings.cancel)
         {
-            settings.currently = (stars.index(this) * settings.inc) + settings.inc;
+            console.log($(this).val('data-var'));
+
+            settings.cur = (stars.index(this) * settings.inc) + settings.inc;
 
             $.post(container.url,
             {
-                "rating": $(this).children('a') [0].href.split('#') [1]
-
+                "rate": $(this).children('a') [0].href.split('#') [1],
+                "data": $(this).parent('div').data('id')
             });
 
             return false;
         }
 
-        else if (1 === settings.maxvalue)
+        else if (1 === settings.max)
         {
-            settings.currently = (0 === settings.currently) ? 1 : 0;
+            settings.cur = (0 === settings.cur) ? 1 : 0;
 
             $(this).toggleClass('on');
 
             $.post(container.url,
             {
-                "rating": $(this).children('a') [0].href.split('#') [1]
+                "rate": $(this).children('a') [0].href.split('#') [1],
+                "data": $(this).parent('div').data('id')
             });
 
             return false;
@@ -147,12 +150,13 @@ $.fn.rate = function (url, opts)
         cancel.click(function ()
         {
             event.drain();
-            settings.currently = 0;
-
+            settings.cur = 0;
             $.post(container.url,
             {
-                "rating": $(this).children('a')[0].href.split('#')[1]
+                "rate": $(this).children('a')[0].href.split('#') [1],
+                "data": $(this).parent('div').data('id')
             });
+
             return false;
         });
     }
@@ -174,7 +178,9 @@ $.fn.rate = function (url, opts)
         },
         reset: function ()
         {   // Reset the stars to the default index.
-            stars.slice(0,settings.currently / settings.inc).addClass('on').end();
+            stars
+                .slice(0,settings.cur / settings.inc)
+                .addClass('on').end();
         }
     };
     event.reset();

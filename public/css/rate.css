@@ -32,22 +32,22 @@
 
 .cancel, .cancel a
 {
-    background: url('img/delete.gif') no-repeat 0 -16px;
+    background: url('/img/delete.gif') no-repeat 0 -16px;
 }
 
 .star, .star a
 {
-    background: url('img/star.gif') no-repeat 0 0px;
+    background: url('/img/star.gif') no-repeat 0 0px;
 }
 
 .star-left, .star-left a
 {
-    background: url('img/star-left.gif') no-repeat 0 0px;
+    background: url('/img/star-left.gif') no-repeat 0 0px;
 }
 
 .star-right, .star-right a
 {
-    background: url('img/star-right.gif') no-repeat 0 0px;
+    background: url('/img/star-right.gif') no-repeat 0 0px;
 }
 
 .cancel a, .star a
