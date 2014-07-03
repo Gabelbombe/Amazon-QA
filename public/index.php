@@ -10,19 +10,19 @@ $twigView = New \Slim\Views\Twig();
 // Configure Twig
 $twigView->parserOptions =
 [
-    'autoescape'        => 1,
-    'auto_reload'       => 1,
+    'autoescape'        => true,
+    'auto_reload'       => true,
     'cache'             => realpath(APP_PATH . '/src/tmp'),
     'charset'           => 'utf-8',
     'optimizations'     => -1,
-    'strict_variables'  => 0,
+    'strict_variables'  => false,
 ];
 
 // Configure Slim
 $app = New \Slim\Slim(
 [
-    'debug'             => 1,
-    'log.enabled'       => 1,
+    'debug'             => true,
+    'log.enabled'       => true,
     'log.level'         => \Slim\Log::WARN,
     'templates.path'    => APP_PATH . '/src/view',
     'view'              => $twigView,
@@ -36,8 +36,19 @@ $app->get('/', function () USE ($app)
 {
     $app->render('/base/index.phtml', [
         'title' => 'Amazon Q and A',
-        'data'  => 'testing',
     ]);
+});
+
+
+/**
+ * Index (POST)
+ */
+$app->post('/handler',function() USE ($app) {
+
+     $request = $app->request();
+     $body = $request->getBody();
+
+    print_r($body);
 });
 
 // Run it
