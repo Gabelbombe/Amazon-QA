@@ -25,7 +25,6 @@ $app = New \Slim\Slim(
     'log.enabled'       => true,
     'log.level'         => \Slim\Log::WARN,
     'templates.path'    => APP_PATH . '/src/view',
-    'view'              => $twigView,
 ]);
 
 
@@ -34,8 +33,12 @@ $app = New \Slim\Slim(
  */
 $app->get('/', function () USE ($app)
 {
-    $app->render('/base/index.phtml', [
-        'title' => 'Amazon Q and A',
+    $payload = New \Database\QueryMapper();
+
+    $app->render('/base/index.php', [
+        'route'     => $app->config('templates.path') . '/base',
+        'payload'   => $payload->getLimit(10, true),
+        'title'     => 'Amazon Q and A',
     ]);
 });
 
