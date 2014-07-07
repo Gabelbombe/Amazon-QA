@@ -5,18 +5,6 @@ ini_set('display_errors', 1);
 define('APP_PATH', dirname(__DIR__));
 
 require APP_PATH . '/src/bootstrap.php';
-$twigView = New \Slim\Views\Twig();
-
-// Configure Twig
-$twigView->parserOptions =
-[
-    'autoescape'        => true,
-    'auto_reload'       => true,
-    'cache'             => realpath(APP_PATH . '/src/tmp'),
-    'charset'           => 'utf-8',
-    'optimizations'     => -1,
-    'strict_variables'  => false,
-];
 
 // Configure Slim
 $app = New \Slim\Slim(
