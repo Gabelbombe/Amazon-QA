@@ -11,8 +11,9 @@ Namespace Database
 
         public function __construct ()
         {
-            $c = require_once APP_PATH . '/src/config/config.php';
+            require_once APP_PATH . '/src/config/config.php';
 
+die;
             $this->engine   = $c->engine;
             $this->host     = $c->host;
             $this->database = $c->database;

@@ -29,6 +29,7 @@
             "src/view",
             "src/controller",
             "src/model",
+            "src/database",
             "src/database/migration",
             "src/database/seed",
             "src/tests"
